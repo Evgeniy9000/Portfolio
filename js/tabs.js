@@ -10,7 +10,7 @@ const changeContent = (array, value) => {
             elem.classList.add('hidden')
         }
     })
-array.add
+
 }
 
 tabButtons.forEach((tabButton) => {
