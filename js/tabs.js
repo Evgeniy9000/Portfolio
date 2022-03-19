@@ -1,36 +1,42 @@
-const tabButtons = document.querySelectorAll('.design-list__item')
-const tabDescriptions = document.querySelectorAll('.design__descr')
-const tabImages = document.querySelectorAll('.design-images')
-const changeContent = (array, value) => {
+const tabButtons = document.querySelectorAll(".design-list__item ");
+const tabDescription = document.querySelectorAll(".design__descr");
+const tabImages= document.querySelectorAll(".design-images");
+const tabTitles = document.querySelectorAll(".design__title");
 
-    array.forEach((elem) => {
-        if (elem.dataset.tabsField === value) {
-            elem.classList.remove('hidden')
-        } else {
-            elem.classList.add('hidden')
-        }
-    })
-array.add
-}
+const changeClassSomeEl = (elem, dataValue) => {
+  elem.forEach((item) => {
+    if (dataValue === item.dataset.tabsField) {
+      item.classList.remove("hidden");
+    } else {
+      item.classList.add("hidden");
+    }
 
-tabButtons.forEach((tabButton) => {
-    tabButton.addEventListener('click', (event) => {
-        const dataValue = tabButton.dataset.tabsHandler
+    if (
+      item.classList.contains("design__title") &&
+      !item.classList.contains("hidden")
+    ) {
+      document.title = item.innerText;
+    }
+  });
+};
 
+tabButtons.forEach((item) => {
+  item.addEventListener("click", (e) => {
+    const dataAttr = e.target.dataset.tabsHandler;
 
-        changeContent(tabDescriptions, dataValue)
-        changeContent(tabImages, dataValue)
+    changeClassSomeEl(tabDescription, dataAttr);
+    changeClassSomeEl(tabImages, dataAttr);
+    changeClassSomeEl(tabTitles, dataAttr);
 
+    tabButtons.forEach((btn) => {
+      if (btn == e.target) {
+        btn.classList.add("design-list__item_active");
+      } else {
+        btn.classList.remove("design-list__item_active");
+      }
 
-        tabButtons.forEach((btn) => {
-            if (btn === event.target) {
-                btn.classList.add('design-list__item_active')
-            } else {
-                btn.classList.remove('design-list__item_active')
-            }
-        })
+    });
 
-    })
-
+  });
 
 });
