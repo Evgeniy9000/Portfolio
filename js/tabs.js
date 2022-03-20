@@ -3,36 +3,30 @@ const tabDescription = document.querySelectorAll(".design__descr");
 const tabImages= document.querySelectorAll(".design-images");
 const tabTitles = document.querySelectorAll(".design__title");
 
-const changeClassSomeEl = (elem, dataValue) => {
-  elem.forEach((item) => {
-    if (dataValue === item.dataset.tabsField) {
-      item.classList.remove("hidden");
+const changeContent = (array, value) => {
+  array.forEach((elem) => {
+    if (elem.dataset.tabsField === value) {
+      elem.classList.remove('hidden');
     } else {
-      item.classList.add("hidden");
+      elem.classList.add('hidden');
     }
 
-    if (
-      item.classList.contains("design__title") &&
-      !item.classList.contains("hidden")
-    ) {
-      document.title = item.innerText;
-    }
+    
   });
 };
 
-tabButtons.forEach((item) => {
-  item.addEventListener("click", (e) => {
-    const dataAttr = e.target.dataset.tabsHandler;
+tabButtons.forEach((tabButton) => {
+  tabButton.addEventListener("click", (event) => {
+    const dataValue = tabButton.dataset.tabsHandler;
 
-    changeClassSomeEl(tabDescription, dataAttr);
-    changeClassSomeEl(tabImages, dataAttr);
-    changeClassSomeEl(tabTitles, dataAttr);
-
+    changeContent(tabDescription, dataValue);
+    changeContent(tabImages, dataValue);
+    
     tabButtons.forEach((btn) => {
-      if (btn == e.target) {
-        btn.classList.add("design-list__item_active");
+      if (btn == event.target) {
+        btn.classList.add('design-list__item_active');
       } else {
-        btn.classList.remove("design-list__item_active");
+        btn.classList.remove('design-list__item_active');
       }
 
     });
